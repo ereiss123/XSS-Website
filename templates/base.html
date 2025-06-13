@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>My Blog</title>
+  </head>
+  <body>
+    <nav>
+      <a href="{{ url_for('index') }}">Home</a> |
+      <a href="{{ url_for('login') }}">login</a>
+    </nav>
+    <hr>
+    {% block body %}{% endblock %}
+  </body>
+</html>

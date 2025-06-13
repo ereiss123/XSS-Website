@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+{% block body %}
+<style>
+  /* F1 Racing theme styles */
+  body {
+    background: url('{{ url_for("static", filename="racing_background.png") }}') no-repeat center center fixed;
+    background-size: cover;
+    font-family: 'Orbitron', sans-serif;
+    color: white;
+  }
+
+  h2 {
+    color: #e10600; /* Ferrari Red */
+    text-shadow: 0 0 8px black;
+    margin-bottom: 10px;
+  }
+
+  p {
+    font-size: 1.1em;
+    text-shadow: 0 0 4px black;
+  }
+
+  form {
+    background: rgba(0, 0, 0, 0.8);
+    padding: 20px 30px;
+    border-radius: 10px;
+    border: 2px solid #e10600;
+    box-shadow: 0 0 15px #e10600;
+    max-width: 480px;
+    margin: 1em 0 2em 0;
+  }
+
+  input[name="input_username"],
+  input[name="input_pass"] {
+    width: 100%;
+    padding: 12px 15px;
+    margin-bottom: 15px;
+    border-radius: 6px;
+    border: none;
+    background: #222;
+    color: white;
+    font-size: 1em;
+    box-shadow: inset 0 0 6px #e10600;
+    transition: box-shadow 0.3s ease;
+  }
+
+  input[name="input_username"]:focus,
+  input[name="input_pass"]:focus {
+    outline: none;
+    box-shadow: 0 0 10px #e10600;
+    background: #330000;
+  }
+
+  button {
+    background-color: #e10600;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    font-size: 1.1em;
+    font-weight: bold;
+    border-radius: 6px;
+    width: 100%;
+    cursor: pointer;
+    box-shadow: 0 0 12px #e10600;
+    transition: background-color 0.3s ease;
+  }
+
+  button:hover {
+    background-color: #b30500;
+  }
+
+  /* The output text styling */
+  p.output {
+    margin-top: 1em;
+    padding: 12px 15px;
+    background: rgba(225, 225, 225, 0.15);
+    border-radius: 6px;
+    border: 1px solid #e10600;
+    text-shadow: none;
+    color: #fff;
+    font-family: 'Orbitron', monospace;
+  }
+
+</style>
+
+<h2>McLaren's Blog</h2>
+<p>This is a little site I made to share my thoughts about high performance racing parts.</p>
+<p>UNDER CONSTRUNCTION (I hope I didn't publish this yet)</p>
+
+<form method="get">
+  <input name="input_username" placeholder="Enter Driver Name" value="{{ user_input1|e }}" size="40" maxlength="50" autocomplete="off" />
+  <input name="input_pass" type="password" placeholder="Enter Pit Passcode" value="{{ user_input2|e }}" size="40" maxlength="50" autocomplete="off" />
+  <button type="submit">Enter the Track</button>
+</form>
+
+{% if user_input2 %}
+  <p class="output">Incorrect Password {{ Markup(user_input2) }}</p>
+{% endif %}
+
+{% endblock %}
