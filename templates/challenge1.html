@@ -30,7 +30,7 @@
     margin: 1em 0 2em 0;
   }
 
-  input[name="input_username"],
+  input[name="input_user"],
   input[name="input_pass"] {
     width: 100%;
     padding: 12px 15px;
@@ -44,7 +44,7 @@
     transition: box-shadow 0.3s ease;
   }
 
-  input[name="input_username"]:focus,
+  input[name="input_user"]:focus,
   input[name="input_pass"]:focus {
     outline: none;
     box-shadow: 0 0 10px #e10600;
@@ -84,11 +84,11 @@
 </style>
 
 <h2>McLaren's Blog</h2>
-<p>This is a little site I made to share my thoughts about high performance racing parts.</p>
-<p>UNDER CONSTRUNCTION (I hope I didn't publish this yet)</p>
+<p>~~UNDER CONSTRUNCTION~~</p>
+<p> Please use "ceo" user to access for now</p>
 
-<form method="get">
-  <input name="input_username" placeholder="Enter Driver Name" value="{{ user_input1|e }}" size="40" maxlength="50" autocomplete="off" />
+<form method="post", action="{{ url_for('login') }}">
+  <input name="input_user" placeholder="Enter Driver Name" value="{{ user_input1|e }}" size="40" maxlength="50" autocomplete="off" />
   <input name="input_pass" type="password" placeholder="Enter Pit Passcode" value="{{ user_input2|e }}" size="40" maxlength="50" autocomplete="off" />
   <button type="submit">Enter the Track</button>
 </form>

