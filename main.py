@@ -1,9 +1,18 @@
-from flask import Flask, request, render_template, redirect, url_for
+from flask import Flask, request, render_template, redirect, url_for, send_from_directory
 from markupsafe import Markup
 import os
+import pathlib
 
 app = Flask(__name__)
 app.jinja_env.globals["Markup"] = Markup
+
+BASE_DIR = pathlib.Path(__file__).parent
+CREDS_DIR = BASE_DIR / "credentials"
+
+@app.route("/creds/<path:filename>")
+def creds(filename):
+    # e.g. /creds/pass.txt
+    return send_from_directory(CREDS_DIR, filename)
 
 @app.route("/")
 def index():
